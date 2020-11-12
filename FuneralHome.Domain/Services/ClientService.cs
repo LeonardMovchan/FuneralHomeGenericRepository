@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using FuneralHome.Data;
 using FuneralHome.Data.Entities;
+using FuneralHome.Data.Interfaces;
 using FuneralHome.Data.Repositories;
 using FuneralHome.Domain.Interfaces;
 using FuneralHome.Domain.Models;
@@ -16,7 +17,7 @@ namespace FuneralHome.Domain.Services
     public class ClientService : IClientService
     {
         private readonly IMapper _mapper;
-        private readonly ClientRepository _clientRepository;
+        private readonly IClientRepository _clientRepository;
 
         public ClientService()
         {
@@ -38,6 +39,16 @@ namespace FuneralHome.Domain.Services
 
         }
 
+        public bool DeleteById(int id)
+        {
+           
+            return _clientRepository.DeleteById(id);
+
+           
+        }
+
+
+
         public IEnumerable<ClientModel> GetAll()
         {
             IEnumerable<Client> models = _clientRepository.GetAll();
@@ -45,6 +56,14 @@ namespace FuneralHome.Domain.Services
             var mappedModels = _mapper.Map<IEnumerable<ClientModel>>(models);
 
             return mappedModels;
+        }
+
+        public ClientModel GetById(int id)
+        {
+            
+            var createdClient = _clientRepository.GetById(id);
+
+            return _mapper.Map<ClientModel>(createdClient);
         }
 
         public ClientModel Update(ClientModel model)

@@ -55,6 +55,19 @@ namespace FuneralHome.Controllers
 
             return _mapper.Map<IEnumerable<ClientViewModel>>(models);
         }
+
+        public bool DeleteById(int id)
+        {
+
+            return _clientService.DeleteById(id);
+
+        }
+
+        public ClientViewModel GetById(int id)
+        {
+            var model = _clientService.GetById(id);
+            return _mapper.Map<ClientViewModel>(model);
+        }
     }
 
 }

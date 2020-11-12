@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace FuneralHome.Data.Interfaces
 {
-    public interface IFuneralRepository
+    public interface IFuneralRepository : IGenericRepository<Funeral, int>
     {
-        IEnumerable<Funeral> GetAll();
-        Funeral Create(Funeral model);
+    
     }
 }

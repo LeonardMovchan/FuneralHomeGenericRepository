@@ -9,23 +9,24 @@ using System.Threading.Tasks;
 
 namespace FuneralHome.Data.Repositories
 {
-    public class FuneralRepository : IFuneralRepository
+    public class FuneralRepository : GenericRepository<Funeral,int>, IFuneralRepository
     {
         private readonly FuneralHomeContext _ctx;
 
-        public FuneralRepository()
+        public FuneralRepository(FuneralHomeContext context) : base(context)
         {
-            _ctx = new FuneralHomeContext();
+            _ctx = context;
         }
 
-        public Funeral Create(Funeral model)
+        public new Funeral Create(Funeral model)
         {
             _ctx.Funerals.Add(model);
             _ctx.SaveChanges();
             return model;
         }
 
-        public IEnumerable<Funeral> GetAll()
+     
+        public new IEnumerable<Funeral> GetAll()
         {
             return _ctx.Funerals
                 .Include(x => x.Client)
@@ -33,6 +34,8 @@ namespace FuneralHome.Data.Repositories
                 .AsNoTracking()
                 .ToList();                                          
         }
+
+    
     }
 
 }

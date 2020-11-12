@@ -27,8 +27,8 @@ namespace EntityFrameworkPractice
 
 
 
-            //clientController.Create(clientModel);
-            //var models = clientController.GetAll();
+            clientController.Create(clientModel);
+            var models = clientController.GetAll();
 
             var updatedModel = new ClientViewModel()
             {
@@ -41,8 +41,12 @@ namespace EntityFrameworkPractice
                 DeathCertificateNumber = 11111
             };
 
-            clientController.Update(updatedModel);
-            var updatedModels = clientController.GetAll();
+            //clientController.Update(updatedModel);
+            //var updatedModels = clientController.GetAll();
+
+            //var getClientById = clientController.GetById(1);
+
+            //var deletedclient = clientController.DeleteById(1);
         }
     }
 }

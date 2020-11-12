@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace FuneralHome.Data.Repositories
 {
-    public class ClientRepository : GenericRepository<Client>, IClientRepository
+    public class ClientRepository : GenericRepository<Client, int>, IClientRepository
     {
         private readonly FuneralHomeContext _ctx;       
         public ClientRepository(FuneralHomeContext context) : base(context)
@@ -24,6 +24,5 @@ namespace FuneralHome.Data.Repositories
             return _ctx.Clients
                 .Include(x => x.Funerals.Select(y => y.DateUtc)).ToList();
         }
-
     }
 }

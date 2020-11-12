@@ -2,7 +2,7 @@
 
 namespace FuneralHome.Data.Interfaces
 {
-    public interface IClientRepository : IGenericRepository<Client>
+    public interface IClientRepository : IGenericRepository<Client, int>
     {
 
     }

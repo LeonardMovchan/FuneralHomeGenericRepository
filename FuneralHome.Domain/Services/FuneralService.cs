@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FuneralHome.Data;
 using FuneralHome.Data.Entities;
 using FuneralHome.Data.Interfaces;
 using FuneralHome.Data.Repositories;
@@ -40,18 +41,12 @@ namespace FuneralHome.Domain.Services
             });
 
             _mapper = new Mapper(mapperConfig);
-            _funeralRepository = new FuneralRepository();
+            _funeralRepository = new FuneralRepository(new FuneralHomeContext());
         }
 
         public FuneralModel Create(FuneralModel model)
         {
-            //var startTime = DateTime.UtcNow.Date;
-            //var endTime  = startTime.AddHours(24).AddMilliseconds(-1);
-
-            //var startTime = DateTime.UtcNow.AddHours(1);
-            //var endTime = DateTime.UtcNow.AddHours(7);
-            //var startTime = DateTime.UtcNow.AddHours(1);
-
+        
             var employeeIds = model.Employees.Select(x => x.Id);
             var employees = _employeeRepository.GetByIds(employeeIds);
 

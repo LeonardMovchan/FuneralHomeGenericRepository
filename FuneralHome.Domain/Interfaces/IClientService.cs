@@ -13,5 +13,10 @@ namespace FuneralHome.Domain.Interfaces
         ClientModel Update(ClientModel model);
         IEnumerable<ClientModel> GetAll();
 
+        bool DeleteById(int id);
+
+        ClientModel GetById(int id);
+
+
     }
 }
